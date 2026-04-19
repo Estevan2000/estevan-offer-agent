@@ -1,0 +1,20 @@
+# Render Blueprint — auto-configures the web service when you create
+# a new Blueprint instance pointing at this repo.
+#
+# https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: estevan-offer-agent
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "8000"
+      - key: FORM_400_SOURCE
+        value: "/app/Form_400_blank.pdf"
+      - key: CLIENTS_DB
+        value: "/app/clients.json"
